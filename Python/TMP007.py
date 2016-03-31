@@ -24,9 +24,10 @@ time.sleep(0.5)
 data = bus.read_i2c_block_data(0x40, 0x03, 2)
 
 # Convert the data to 14-bits
-cTemp = ((data[0] * 256 + (data[1] & 0xFC)) / 4) * 0.03125
+cTemp = ((data[0] * 256 + (data[1] & 0xFC)) / 4)
 if cTemp > 8191 :
 	cTemp -= 16384
+cTemp = cTemp * 0.03125
 fTemp = cTemp * 1.8 + 32
 
 # Output data to screen
